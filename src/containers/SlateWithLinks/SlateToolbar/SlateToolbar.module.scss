@@ -1,0 +1,32 @@
+.slateToolbar {
+  display: flex;
+  align-items: center;
+  width: auto;
+  padding: 12px;
+  margin: 0;
+  background: wheat;
+  border: 1px solid black;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+.linkButtonWrapper {
+  flex-direction: row;
+  display: flex;
+  position: relative;
+}
+
+.linkButton {
+  fill: red;
+  cursor: pointer;
+  margin-right: 24px;
+
+  &.active {
+    fill: green;
+  }
+
+  &.disabled {
+    fill: grey;
+  }
+}
+
