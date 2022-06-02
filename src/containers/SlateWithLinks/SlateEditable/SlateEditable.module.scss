@@ -1,0 +1,15 @@
+.slateEditable {
+  position: relative;
+  max-width: 100%;
+
+  &:focus {
+    border: 1px solid blue;
+  }
+}
+
+.slateInput {
+  padding: 0 12px;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 0.5px;
+}

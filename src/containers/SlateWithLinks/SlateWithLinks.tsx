@@ -4,6 +4,7 @@ import { Editable, withReact } from 'slate-react';
 import { withHistory } from 'slate-history';
 import SlateProviderWrapper from './SlateProviderWrapper/SlateProviderWrapper';
 import SlateToolbar from './SlateToolbar/SlateToolbar';
+import SlateEditable from './SlateEditable/SlateEditable';
 
 import styles from './SlateWithLinks.module.scss';
 
@@ -21,7 +22,7 @@ export default function IndexPage() {
     <div className={styles.pageContainer}>
       <SlateProviderWrapper editor={editor} value={value} onChange={setValue}>
         <SlateToolbar />
-        <Editable placeholder="Enter some plain text..." />
+        <SlateEditable />
       </SlateProviderWrapper>
     </div>
   )
