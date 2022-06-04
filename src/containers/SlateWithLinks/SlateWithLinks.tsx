@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { Editor, Element as SlateElement, createEditor } from 'slate';
 import { withReact } from 'slate-react';
 import { withHistory } from 'slate-history';
-import { SlateProviderWrapper, SlateEditable, SlateToolbar } from './Slate';
+import { SlateProviderWrapper, SlateEditable, SlateToolbar } from 'SlateComponent';
 
 import styles from './SlateWithLinks.module.scss';
 
@@ -23,7 +23,7 @@ export default function IndexPage() {
       <p>Slate editor with `add/remove` link button.</p>
       <div className={styles.columnsContainer}>
         <SlateProviderWrapper editor={editor} value={value} onChange={setValue}>
-          <SlateToolbar />
+          <SlateToolbar formatOptions={['link']}/>
           <SlateEditable />
         </SlateProviderWrapper>
         <div className={styles.slateJsonCotainer}>

@@ -5,7 +5,7 @@ import { withHistory } from 'slate-history';
 import { unified } from "unified";
 import stringify from "remark-stringify";
 import { slateToRemark } from "remark-slate-transformer";
-import { SlateProviderWrapper, SlateEditable, SlateToolbar } from './Slate';
+import { SlateProviderWrapper, SlateEditable, SlateToolbar } from 'SlateComponent';
 
 import styles from './SlateWithMarkdownSerialize.module.scss';
 

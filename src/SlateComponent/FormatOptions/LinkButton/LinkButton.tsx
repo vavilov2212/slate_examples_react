@@ -4,7 +4,7 @@ import LinkIcon from './link.svg';
 import { Editor, Transforms, Range, Descendant, Element as SlateElement} from 'slate';
 import { useSlate } from 'slate-react';
 
-import styles from './SlateToolbar.module.scss';
+import styles from './LinkButton.module.scss';
 
 interface LinkElement {
   type: 'link';
