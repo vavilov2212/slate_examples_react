@@ -39,7 +39,7 @@ export default function IndexPage() {
       <p>Slate editor with most common formatting options</p>
       <div className={styles.columnsContainer}>
         <SlateProviderWrapper editor={editor} value={value} onChange={setValue}>
-          <SlateToolbar formattingOptions={['link', 'strong', 'emphasis', 'underline', 'strikethrough'/*, 'numbered-list', 'bulleted-list'*/ ]} />
+          <SlateToolbar formattingOptions={['link', 'strong', 'emphasis', 'underline', 'strikethrough', 'numbered-list', 'bulleted-list', 'left', 'center', 'right', 'justify' ]} />
           <SlateEditable />
         </SlateProviderWrapper>
         <div className={styles.serializedCotainer}>
@@ -59,6 +59,26 @@ const serialize = (value: Descendant[]) => {
   const processor = unified().use(slateToRemark, {
     overrides: {
       // https://github.com/inokawa/remark-slate-transformer/issues/31#issuecomment-1146665213
+      ['numbered-list']: (node: Node, next) => {
+        return ({
+          type: 'list',
+          ordered: true,
+          children: next(node.children),
+        })
+      },
+      ['bulleted-list']: (node: Node, next) => {
+        return ({
+          type: 'list',
+          ordered: false,
+          children: next(node.children),
+        })
+      },
+      ['list-item']: (node: Node, next) => {
+        return ({
+          type: 'listItem',
+          children: next(node.children),
+        })
+      },
       paragraph: (node: Node, next) => {
         console.log('@@@', node);
         const children = node.children.map(child => {

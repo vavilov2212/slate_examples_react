@@ -1,7 +1,7 @@
 .slateToolbar {
-  display: flex;
-  align-items: center;
-  width: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(42px, auto));
+  grid-row-gap: 12px;
   padding: 12px;
   margin: 0;
   background: #F7F9FB;

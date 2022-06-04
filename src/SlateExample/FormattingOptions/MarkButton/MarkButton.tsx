@@ -32,21 +32,20 @@ const MarkButton = (props: MarkButtonProps) => {
   }
 
   return (
-    <div className={styles.linkButtonWrapper}>
-      <div onMouseDown={(event) => {
-        event.preventDefault();
-        toggleMark(editor, format);
-      }}>
-        <Icon
-          className={cn(
-            styles.linkButton,
-            {
-              [styles.active]: isMarkActive(editor, format),
-              /* [styles.disabled]: isLinkInputFocused, */
-            },
-          )}
-        />
-      </div>
+    <div className={styles.markButtonWrapper}>
+      <Icon
+        onMouseDown={(event) => {
+          event.preventDefault();
+          toggleMark(editor, format);
+        }}
+        className={cn(
+          styles.markButton,
+          {
+            [styles.active]: isMarkActive(editor, format),
+            /* [styles.disabled]: isLinkInputFocused, */
+          },
+        )}
+      />
     </div>
   );
 }

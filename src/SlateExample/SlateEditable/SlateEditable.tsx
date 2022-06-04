@@ -20,12 +20,41 @@ export default function IndexPage() {
 
 const Element = (props: any) => {
   const { attributes, children, element } = props
+  const style = { textAlign: element.align };
   switch (element.type) {
     case 'link': {
-      return <LinkComponent {...props} />
+      const selected = useSelected()
+
+      return (
+        <a
+          {...attributes}
+          href={element.url}
+          className={cn({[styles.selected]: selected})}
+        >
+          {children}
+        </a>
+      );
     }
+    case 'bulleted-list':
+      return (
+        <ul style={style} {...attributes}>
+          {children}
+        </ul>
+      )
+    case 'numbered-list':
+      return (
+        <ol style={style} {...attributes}>
+          {children}
+        </ol>
+      );
+    case 'list-item':
+      return (
+        <li {...attributes}>
+          {children}
+        </li>
+      )
     default: {
-      return <p {...attributes}>{children}</p>
+      return <p style={style} {...attributes}>{children}</p>
     }
   }
 };
@@ -46,17 +75,3 @@ const Leaf = ({ attributes, children, leaf }) => {
 
   return <span {...attributes}>{children}</span>;
 };
-
-const LinkComponent = ({ attributes, children, element }) => {
-  const selected = useSelected()
-
-  return (
-    <a
-      {...attributes}
-      href={element.url}
-      className={cn({[styles.selected]: selected})}
-    >
-      {children}
-    </a>
-  )
-}

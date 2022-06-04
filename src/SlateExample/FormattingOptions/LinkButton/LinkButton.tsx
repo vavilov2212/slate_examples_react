@@ -58,26 +58,25 @@ const LinkButton = (props: any) => {
 
   return (
     <div className={styles.linkButtonWrapper}>
-      <div onMouseDown={(event) => {
-        event.preventDefault();
-        if (isLinkActive(editor)) {
-          unwrapLink(editor);
-        } else {
-          const url = window.prompt('Enter the URL of the link:')
-          if (!url) return
-          insertLink(editor, url);
-        }
-      }}>
-        <LinkIcon
-          className={cn(
-            styles.linkButton,
-            {
-              [styles.active]: isLinkActive(editor),
-              /* [styles.disabled]: isLinkInputFocused, */
-            },
-          )}
-        />
-      </div>
+      <LinkIcon
+        onMouseDown={(event) => {
+          event.preventDefault();
+          if (isLinkActive(editor)) {
+            unwrapLink(editor);
+          } else {
+            const url = window.prompt('Enter the URL of the link:')
+            if (!url) return
+            insertLink(editor, url);
+          }
+        }}
+        className={cn(
+          styles.linkButton,
+          {
+            [styles.active]: isLinkActive(editor),
+            /* [styles.disabled]: isLinkInputFocused, */
+          },
+        )}
+      />
     </div>
   );
 }
