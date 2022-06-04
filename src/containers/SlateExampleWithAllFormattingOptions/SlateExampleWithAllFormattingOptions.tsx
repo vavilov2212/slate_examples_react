@@ -58,7 +58,6 @@ export default function IndexPage() {
 const serialize = (value: Descendant[]) => {
   const processor = unified().use(slateToRemark, {
     overrides: {
-      // https://github.com/inokawa/remark-slate-transformer/issues/31#issuecomment-1146665213
       ['numbered-list']: (node: Node, next) => {
         return ({
           type: 'list',
@@ -79,20 +78,35 @@ const serialize = (value: Descendant[]) => {
           children: next(node.children),
         })
       },
+      // https://github.com/inokawa/remark-slate-transformer/issues/31#issuecomment-1146665213
       paragraph: (node: Node, next) => {
-        console.log('@@@', node);
         const children = node.children.map(child => {
+          let rChild = { ...child };
+          let rText = rChild.text;
+
           if (child.text && child.underline) {
-            const { text, ...modifiedChild } = child;
-            return { ...modifiedChild, type: 'html', children: [ { text: `<u>${child.text}</u>` }] }
+            rText = `<u>${rText}</u>`;
+
+            delete rChild.text;
+            rChild = { ...rChild, text: rText };
           }
           if (child.text && child.strikethrough) {
-            const { text, ...modifiedChild } = child;
-            return { ...modifiedChild, type: 'html', children: [ { text: `~${child.text}~` }] }
+            rText = `~~${rText}~~`;
+
+            delete rChild.text;
+            rChild = { ...rChild, text: rText };
+
+            /*
+             * This works without replacing escape characters afterwards, but requires 
+             * that each mark is proccessed here. Otherwise this will override other marks
+             * applied to this node (eg. it can't be bold and strikethrough at the same time)
+             *
+             * return { ...modifiedChild, type: 'html', children: [ { text: `~${child.text}~` }] }
+            */
           }
-          return child;
+          return rChild;
         });
-        console.log('children', children);
+
         return ({
           type: "paragraph",
           children: next(children),
@@ -106,7 +120,7 @@ const serialize = (value: Descendant[]) => {
   });
   const mdText = processor.stringify(ast);
 
-  return mdText;
+  return mdText.replace(/\\(?=<|~)/g, '');
 };
 
 const withInlines = (editor: Editor) => {
