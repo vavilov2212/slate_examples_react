@@ -10,7 +10,7 @@ export default function IndexPage() {
     <div className={styles.slateEditable}>
       <Editable
         renderElement={props => <Element {...props} />}
-        renderLeaf={props => <Text {...props} />}
+        renderLeaf={props => <Leaf {...props} />}
         placeholder="Enter some plain text..."
         className={styles.slateInput}
       />
@@ -30,10 +30,12 @@ const Element = (props: any) => {
   }
 };
 
-const Text = (props: any) => {
-  const { attributes, children } = props
+const Leaf = ({ attributes, children, leaf }) => {
+  if (leaf.bold) {
+    children = <strong>{children}</strong>
+  }
 
-  return <span {...attributes}>{children}</span>
+  return <span {...attributes}>{children}</span>;
 };
 
 const LinkComponent = ({ attributes, children, element }) => {

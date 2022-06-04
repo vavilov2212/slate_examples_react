@@ -7,7 +7,7 @@ import stringify from "remark-stringify";
 import { slateToRemark } from "remark-slate-transformer";
 import { SlateProviderWrapper, SlateEditable, SlateToolbar } from 'SlateExample';
 
-import styles from './SlateWithMarkdownSerialize.module.scss';
+import styles from './SlateExampleWithAllFormattingOptions.module.scss';
 
 export default function IndexPage() {
   const [value, setValue] = useState<any>([
@@ -31,19 +31,10 @@ export default function IndexPage() {
 
   return (
     <div className={styles.pageContainer}>
-      <p>
-        Slate editor with `add/remove` link button, which serializes to markdown with
-        &nbsp;
-        <a
-          href="https://github.com/inokawa/remark-slate-transformer"
-          target="_blank"
-        >
-          remark-slate-transformer
-        </a>
-      </p>
+      <p>Slate editor with most common formatting options</p>
       <div className={styles.columnsContainer}>
         <SlateProviderWrapper editor={editor} value={value} onChange={setValue}>
-          <SlateToolbar formattingOptions={['link']} />
+          <SlateToolbar formattingOptions={['link', 'bold' ]} />
           <SlateEditable />
         </SlateProviderWrapper>
         <div className={styles.serializedCotainer}>

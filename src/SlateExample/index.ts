@@ -1,9 +1,10 @@
 import SlateProviderWrapper from './SlateProviderWrapper/SlateProviderWrapper';
 import SlateEditable from './SlateEditable/SlateEditable';
-import SlateToolbar from './SlateToolbar/SlateToolbar';
+import SlateToolbar, { FormattingOption } from './SlateToolbar/SlateToolbar';
 
 export {
   SlateProviderWrapper,
   SlateEditable,
-  SlateToolbar
+  SlateToolbar,
+  FormattingOption
 };
