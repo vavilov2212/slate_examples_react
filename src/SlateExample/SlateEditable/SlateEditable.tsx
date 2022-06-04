@@ -40,6 +40,9 @@ const Leaf = ({ attributes, children, leaf }) => {
   if (leaf.underline) {
     children = <u>{children}</u>
   }
+  if (leaf.strikethrough) {
+    children = <s>{children}</s>
+  }
 
   return <span {...attributes}>{children}</span>;
 };

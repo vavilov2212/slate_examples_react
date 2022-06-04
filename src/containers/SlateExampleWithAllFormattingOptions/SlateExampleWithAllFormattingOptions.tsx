@@ -14,7 +14,20 @@ export default function IndexPage() {
     {
       type: 'paragraph',
       children: [
-        { text: 'This text is underlined.', underline: true },
+        { text: 'This', strong: true },
+        { text: ' ' },
+        { text: 'text', emphasis: true },
+        { text: ' ' },
+        { text: 'is', underline: true },
+        { text: ' ' },
+        { text: 'formatted', strikethrough: true },
+        { text: ' .' }
+      ],
+    },
+    {
+      type: 'paragraph',
+      children: [
+        { text: 'This is regular text' },
       ],
     }
   ])
@@ -26,7 +39,7 @@ export default function IndexPage() {
       <p>Slate editor with most common formatting options</p>
       <div className={styles.columnsContainer}>
         <SlateProviderWrapper editor={editor} value={value} onChange={setValue}>
-          <SlateToolbar formattingOptions={['link', 'strong', 'emphasis', 'underline' ]} />
+          <SlateToolbar formattingOptions={['link', 'strong', 'emphasis', 'underline', 'strikethrough'/*, 'numbered-list', 'bulleted-list'*/ ]} />
           <SlateEditable />
         </SlateProviderWrapper>
         <div className={styles.serializedCotainer}>
@@ -47,13 +60,19 @@ const serialize = (value: Descendant[]) => {
     overrides: {
       // https://github.com/inokawa/remark-slate-transformer/issues/31#issuecomment-1146665213
       paragraph: (node: Node, next) => {
+        console.log('@@@', node);
         const children = node.children.map(child => {
           if (child.text && child.underline) {
             const { text, ...modifiedChild } = child;
             return { ...modifiedChild, type: 'html', children: [ { text: `<u>${child.text}</u>` }] }
           }
+          if (child.text && child.strikethrough) {
+            const { text, ...modifiedChild } = child;
+            return { ...modifiedChild, type: 'html', children: [ { text: `~${child.text}~` }] }
+          }
           return child;
         });
+        console.log('children', children);
         return ({
           type: "paragraph",
           children: next(children),

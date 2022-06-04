@@ -23,6 +23,8 @@
   background: #80808008;
   border: 1px solid #E8ECF0;
   white-space: pre-wrap;
+  word-wrap: anywhere;
+  word-break: break-all;
 
   & > :first-child {
     display: block;

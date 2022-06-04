@@ -1,10 +1,17 @@
 import React from 'react';
 import dynamic from 'next/dynamic'
-import { italic, bold, underline } from './icons';
+import { italic, bold, underline, strikethrough } from './icons';
 
 import styles from './SlateToolbar.module.scss';
 
-export type FormattingOption = 'link' | 'strong' | 'emphasis' | 'underline';
+export type FormattingOption =
+  'link'
+  | 'strong'
+  | 'emphasis'
+  | 'underline'
+  | 'strikethrough'
+  | 'numbered-list'
+  | 'bulleted-list';
 
 interface SlateProviderWrapper {
   formattingOptions: FormattingOption[];
@@ -20,7 +27,7 @@ export default function SlateProviderWrapper(props: any) {
     strong: (props: never) => <MarkButton format={'strong'} icon={bold} {...props} />,
     emphasis: (props: never) => <MarkButton format={'emphasis'} icon={italic} {...props} />,
     underline: (props: never) => <MarkButton format={'underline'} icon={underline} {...props} />,
-    /* strikethrough: dynamic (() => import('SlateExample/FormattingOptions/StrikethroughButton/StrikethroughButton')), */
+    strikethrough: (props: never) => <MarkButton format={'strikethrough'} icon={strikethrough} {...props} />,
   };
 
   return (
