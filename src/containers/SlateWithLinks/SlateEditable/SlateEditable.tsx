@@ -21,10 +21,12 @@ export default function IndexPage() {
 const Element = (props: any) => {
   const { attributes, children, element } = props
   switch (element.type) {
-    case 'link':
+    case 'link': {
       return <LinkComponent {...props} />
-    default:
+    }
+    default: {
       return <p {...attributes}>{children}</p>
+    }
   }
 };
 
@@ -36,6 +38,7 @@ const Text = (props: any) => {
 
 const LinkComponent = ({ attributes, children, element }) => {
   const selected = useSelected()
+
   return (
     <a
       {...attributes}

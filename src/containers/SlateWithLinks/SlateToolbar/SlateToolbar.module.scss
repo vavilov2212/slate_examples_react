@@ -4,8 +4,8 @@
   width: auto;
   padding: 12px;
   margin: 0;
-  background: wheat;
-  border: 1px solid black;
+  background: #F7F9FB;
+  border: 1px solid #E8ECF0;
   border-bottom-width: 1px;
   border-bottom-style: solid;
 }
@@ -17,16 +17,16 @@
 }
 
 .linkButton {
-  fill: red;
+  fill: #546377;
   cursor: pointer;
   margin-right: 24px;
 
   &.active {
-    fill: green;
+    fill: #08C0A0;
   }
 
   &.disabled {
-    fill: grey;
+    fill: #A9B5C4;
   }
 }
 

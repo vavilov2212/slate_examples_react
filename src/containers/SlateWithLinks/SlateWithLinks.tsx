@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { createEditor } from 'slate';
 import { Editable, withReact } from 'slate-react';
 import { withHistory } from 'slate-history';
@@ -9,14 +9,16 @@ import SlateEditable from './SlateEditable/SlateEditable';
 import styles from './SlateWithLinks.module.scss';
 
 export default function IndexPage() {
-  const editor = useMemo(() => withReact(withHistory(createEditor())), [])
   const [value, setValue] = useState<any>([
-    {
+    { 
+      type: 'paragraph',
       children: [
         { text: 'This is editable plain text, just like a <textarea>!' },
       ],
     },
   ])
+
+  const editor = useMemo(() => withInlines(withReact(withHistory(createEditor()))), [])
 
   return (
     <div className={styles.pageContainer}>
@@ -26,5 +28,14 @@ export default function IndexPage() {
       </SlateProviderWrapper>
     </div>
   )
+}
+
+const withInlines = editor => {
+  const { insertData, insertText, isInline } = editor
+
+  editor.isInline = element =>
+    ['link'].includes(element.type) || isInline(element)
+
+  return editor;
 }
 
