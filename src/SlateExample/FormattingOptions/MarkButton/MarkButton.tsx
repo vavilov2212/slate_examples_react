@@ -1,14 +1,19 @@
 import React from 'react';
 import cn from 'classnames';
-import BoldIcon from './bold.svg';
 import { Editor } from 'slate';
 import { useSlate } from 'slate-react';
 
 import { FormattingOption } from 'SlateExample';
 
-import styles from './BoldButton.module.scss';
+import styles from './MarkButton.module.scss';
 
-const BoldButton = (_props: any) => {
+interface MarkButtonProps {
+  format: FormattingOption;
+  icon: SVGElement;
+}
+
+const MarkButton = (props: MarkButtonProps) => {
+  const { format, icon: Icon } = props;
   const editor = useSlate();
 
   const isMarkActive = (editor: Editor, format: FormattingOption) => {
@@ -26,18 +31,17 @@ const BoldButton = (_props: any) => {
     }
   }
 
-
   return (
     <div className={styles.linkButtonWrapper}>
       <div onMouseDown={(event) => {
         event.preventDefault();
-        toggleMark(editor, 'bold');
+        toggleMark(editor, format);
       }}>
-        <BoldIcon
+        <Icon
           className={cn(
             styles.linkButton,
             {
-              [styles.active]: isMarkActive(editor, 'bold'),
+              [styles.active]: isMarkActive(editor, format),
               /* [styles.disabled]: isLinkInputFocused, */
             },
           )}
@@ -47,4 +51,4 @@ const BoldButton = (_props: any) => {
   );
 }
 
-export default BoldButton;
+export default MarkButton;
