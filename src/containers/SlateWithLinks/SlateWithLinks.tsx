@@ -1,10 +1,8 @@
-import React, { useEffect, useState, useMemo } from 'react';
-import { createEditor } from 'slate';
-import { Editable, withReact } from 'slate-react';
+import React, { useState, useMemo } from 'react';
+import { Editor, Element as SlateElement, createEditor } from 'slate';
+import { withReact } from 'slate-react';
 import { withHistory } from 'slate-history';
-import SlateProviderWrapper from './SlateProviderWrapper/SlateProviderWrapper';
-import SlateToolbar from './SlateToolbar/SlateToolbar';
-import SlateEditable from './SlateEditable/SlateEditable';
+import { SlateProviderWrapper, SlateEditable, SlateToolbar } from './Slate';
 
 import styles from './SlateWithLinks.module.scss';
 
@@ -22,6 +20,7 @@ export default function IndexPage() {
 
   return (
     <div className={styles.pageContainer}>
+      <p>Slate editor with `add/remove` link button.</p>
       <SlateProviderWrapper editor={editor} value={value} onChange={setValue}>
         <SlateToolbar />
         <SlateEditable />
@@ -30,12 +29,11 @@ export default function IndexPage() {
   )
 }
 
-const withInlines = editor => {
-  const { insertData, insertText, isInline } = editor
+const withInlines = (editor: Editor) => {
+  const { isInline } = editor
 
-  editor.isInline = element =>
+  editor.isInline = (element: SlateElement) =>
     ['link'].includes(element.type) || isInline(element)
 
   return editor;
-}
-
+};

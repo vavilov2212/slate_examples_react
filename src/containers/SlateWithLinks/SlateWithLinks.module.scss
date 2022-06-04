@@ -1,36 +1,6 @@
 .pageContainer {
   display: flex;
   flex-direction: column;
-  padding: 25px;
   gap: 15px;
+  margin: 25px;
 }
-
-.container {
-  flex: 1;
-}
-
-.editable {
-  flex: 1;
-}
-
-.input {
-  flex: 1;
-  word-wrap: anywhere !important;
-}
-
-.fileInfoWrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  width: 50%;
-}
-
-.fileNameInput, .filePathInput {
-  padding: 8px 16px;
-}
-
-.submitButton {
-  width: max-content;
-  font-size: 18px;
-}
-

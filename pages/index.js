@@ -1,8 +1,8 @@
-import SlateWIthLinks from 'containers/SlateWIthLinks/SlateWIthLinks';
+import App from 'containers/App/App';
 
 export default function IndexPage() {
 
   return (
-    <SlateWIthLinks />
+    <App />
   )
 }
