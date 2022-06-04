@@ -33,6 +33,7 @@ export default function IndexPage() {
     <div className={styles.pageContainer}>
       <p>
         Slate editor with `add/remove` link button, which serializes to markdown with
+        &nbsp;
         <a
           href="https://github.com/inokawa/remark-slate-transformer"
           target="_blank"
@@ -40,14 +41,20 @@ export default function IndexPage() {
           remark-slate-transformer
         </a>
       </p>
-      <span>Serialized value:</span>
-      <div className={styles.serializedCotainer}>
-        <p>{serialize(value)}</p>
+      <div className={styles.columnsContainer}>
+        <SlateProviderWrapper editor={editor} value={value} onChange={setValue}>
+          <SlateToolbar />
+          <SlateEditable />
+        </SlateProviderWrapper>
+        <div className={styles.serializedCotainer}>
+          <span>Serialized value:</span>
+          {serialize(value)}
+          <div className={styles.slateJsonCotainer}>
+            <span>Slate JSON value:</span>
+              {JSON.stringify(value)}
+          </div>
+        </div>
       </div>
-      <SlateProviderWrapper editor={editor} value={value} onChange={setValue}>
-        <SlateToolbar />
-        <SlateEditable />
-      </SlateProviderWrapper>
     </div>
   )
 }

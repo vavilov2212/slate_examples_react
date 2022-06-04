@@ -5,8 +5,40 @@
   margin: 25px;
 }
 
+.columnsContainer {
+  display: flex;
+  gap: 15px;
+
+  & > :first-child {
+    max-width: unset;
+  }
+
+  & > * {
+    flex: 1;
+  }
+}
+
 .serializedCotainer {
-  padding: 0 15px;
+  padding: 15px;
   background: #80808008;
   border: 1px solid #E8ECF0;
+  white-space: pre-wrap;
+
+  & > :first-child {
+    display: block;
+    margin-bottom: 15px;
+    text-decoration: underline;
+    font-size: 1.25em;
+  }
+}
+
+.slateJsonCotainer {
+  margin-top: 15px;
+
+  & > :first-child {
+    display: block;
+    margin-bottom: 15px;
+    text-decoration: underline;
+    font-size: 1.25em;
+  }
 }

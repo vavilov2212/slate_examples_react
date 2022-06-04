@@ -21,10 +21,16 @@ export default function IndexPage() {
   return (
     <div className={styles.pageContainer}>
       <p>Slate editor with `add/remove` link button.</p>
-      <SlateProviderWrapper editor={editor} value={value} onChange={setValue}>
-        <SlateToolbar />
-        <SlateEditable />
-      </SlateProviderWrapper>
+      <div className={styles.columnsContainer}>
+        <SlateProviderWrapper editor={editor} value={value} onChange={setValue}>
+          <SlateToolbar />
+          <SlateEditable />
+        </SlateProviderWrapper>
+        <div className={styles.slateJsonCotainer}>
+          <span>Slate JSON value:</span>
+            {JSON.stringify(value)}
+        </div>
+      </div>
     </div>
   )
 }
