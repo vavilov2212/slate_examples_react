@@ -1,0 +1,13 @@
+@import '../../../../ui/css/vars/all';
+@import '../../../../ui/css/vars/colors';
+@import '../../../../ui/css/mixins/base';
+
+.blockButton {
+  @include fillColor(editor);
+  cursor: pointer;
+  margin-right: 24px;
+
+  &.active {
+    fill: $colorBrand;
+  }
+}

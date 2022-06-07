@@ -66,7 +66,7 @@ const serialize = (value: Descendant[]) => {
     children: value,
   });
   const mdText = processor.stringify(ast);
-  console.log('mdText', mdText);
+
   return mdText;
 };
 

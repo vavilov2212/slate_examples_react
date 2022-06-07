@@ -8,7 +8,30 @@ module.exports = () => {
         and: [/\.(js|ts)x?$/]
       },
 
-      use: ['@svgr/webpack'],
+      use: [
+        {
+          loader: '@svgr/webpack',
+        }, 
+        /*
+         * This actually works, but emits error
+         * `SvgoParserError no white space before first tag` TODO: try to make it work
+         */
+        /* { */
+        /*   loader: 'svg-sprite-loader', */
+        /*   options: { */
+        /*     name: '[name].[hash]', */
+        /*     prefixize: true, */
+        /*   } */
+        /* }, */
+        /* { */
+        /*   loader: 'svgo-loader', */
+        /*   options: { */
+        /*     removeTitle: true, */
+        /*     convertPathData: false, */
+        /*     removeUselessStrokeAndFill: true, */
+        /*   } */
+        /* }, */
+      ],
     });
     return config
   }

@@ -42,7 +42,6 @@ const BlockButton = (props: BlockButtonProps) => {
       format,
       TEXT_ALIGN_TYPES.includes(format) ? 'align' : 'type'
     )
-    console.log('isActive', isActive);
     const isList = LIST_TYPES.includes(format)
 
     Transforms.unwrapNodes(editor, {
@@ -55,7 +54,6 @@ const BlockButton = (props: BlockButtonProps) => {
     })
     let newProperties: Partial<SlateElement>
     if (TEXT_ALIGN_TYPES.includes(format)) {
-      console.log('isActive ? undefined : format', isActive ? undefined : format);
       newProperties = {
         align: isActive ? undefined : format,
       }
@@ -64,7 +62,6 @@ const BlockButton = (props: BlockButtonProps) => {
         type: isActive ? 'paragraph' : isList ? 'list-item' : format,
       }
     }
-    console.log('newProperties', newProperties);
     Transforms.setNodes<SlateElement>(editor, newProperties)
 
     if (!isActive && isList) {

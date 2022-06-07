@@ -1,0 +1,27 @@
+@import '../../../../ui/css/vars/all';
+@import '../../../../ui/css/vars/colors';
+@import '../../../../ui/css/mixins/base';
+
+.inputImage {
+  display: none;
+}
+
+.rteImageBlockButton {
+  @include fillColor(editor);
+  cursor: pointer;
+  margin-right: 24px;
+
+  &.active {
+    fill: $colorBrand;
+  }
+
+  &.disabled {
+    fill: $colorTextDisabledLight;
+  }
+}
+
+.rteImageButtonWrapper {
+  flex-direction: row;
+  display: flex;
+  position: relative;
+}

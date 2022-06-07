@@ -1,0 +1,59 @@
+@import '../../../../ui/css/vars/all';
+@import '../../../../ui/css/vars/colors';
+@import '../../../../ui/css/mixins/base';
+
+.blockButton {
+  @include fillColor(editor);
+  cursor: pointer;
+  margin-right: 24px;
+
+  &.active {
+    fill: $colorBrand;
+  }
+}
+
+.rteHeadinContainer {
+  display: flex;
+  position: relative;
+  margin-right: 24px;
+}
+
+.rteHeadingLabelContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 110px;
+  box-sizing: border-box;
+  align-items: center;
+  padding: 6px 8px;
+  cursor: pointer;
+  @include bg(secondary);
+}
+
+.contentContainer {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  box-shadow: $shadow_1;
+  overflow: hidden;
+  z-index: 1;
+  @include bg(secondary);
+}
+
+.rteHeadingAvitve {
+  font-weight: bold;
+}
+
+.rteHeadingOption {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.activeHeading {
+  &:global(#{$theme-light}) {
+    background-color: $colorBgQuaternaryLight;
+  }
+
+  &:global(#{$theme-dark}) {
+    background-color: $colorBgQuinaryDark;
+  }
+}

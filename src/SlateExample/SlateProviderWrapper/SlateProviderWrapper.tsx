@@ -6,10 +6,6 @@ import styles from './SlateProviderWrapper.module.scss';
 export default function SlateProviderWrapper(props: any) {
   const { editor, value, onChange } = props;
 
-  useEffect(() => {
-    console.log('value', value);
-  }, [value]);
-
   return (
     <div className={styles.slateProviderWrapper}>
       <Slate editor={editor} value={value} onChange={onChange}>
