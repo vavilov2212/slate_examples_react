@@ -1,0 +1,492 @@
+@import '../vars/all';
+@import '../vars/colors';
+
+@mixin background($selector: '') {
+  &:global(#{$theme-light})#{$selector} {
+    background-color: $colorMainBgLight;
+  }
+
+  &:global(#{$theme-dark})#{$selector} {
+    background-color: $colorMainBgDark;
+  }
+}
+
+@mixin backgroundSelected() {
+  &:global(#{$theme-light}) {
+    background-color: $colorBgSelectedLight;
+  }
+
+  &:global(#{$theme-dark}) {
+    background-color: $colorBgSelectedDark;
+    color: $colorTextButton;
+    -webkit-text-fill-color: $colorTextButton;
+  }
+}
+
+@mixin bg($type: pirmary) {
+  @if $type == primary {
+    &:global(#{$theme-light}) {
+      background-color: $colorBgPrimaryLight;
+    }
+
+    &:global(#{$theme-dark}) {
+      background-color: $colorBgPrimaryDark;
+    }
+  }
+
+  @if $type == secondary {
+    &:global(#{$theme-light}) {
+      background-color: $colorBgSecondaryLight;
+    }
+
+    &:global(#{$theme-dark}) {
+      background-color: $colorBgSecondaryDark;
+    }
+  }
+
+  @if $type == tertiary {
+    &:global(#{$theme-light}) {
+      background-color: $colorBgTertiaryLight;
+    }
+
+    &:global(#{$theme-dark}) {
+      background-color: $colorBgTertiaryDark;
+    }
+  }
+
+  @if $type == quaternary {
+    &:global(#{$theme-light}) {
+      background-color: $colorBgQuaternaryLight;
+    }
+
+    &:global(#{$theme-dark}) {
+      background-color: $colorBgQuaternaryDark;
+    }
+  }
+
+  @if $type == quinary {
+    &:global(#{$theme-light}) {
+      background-color: $colorBgQuinaryLight;
+    }
+
+    &:global(#{$theme-dark}) {
+      background-color: $colorBgQuinaryDark;
+    }
+  }
+
+  @if $type == editor {
+    &:global(#{$theme-light}) {
+      background-color: $colorBgPrimaryLight;
+    }
+
+    &:global(#{$theme-dark}) {
+      background-color: $colorBgTertiaryDark;
+    }
+  }
+}
+
+@mixin fillColor($type: editor) {
+  @if $type == pagination {
+    &:global(#{$theme-light}) {
+      fill: $colorBgQuinaryLight;
+    }
+
+    &:global(#{$theme-dark}) {
+      fill: $colorBgQuinaryDark;
+    }
+  }
+  @if $type == editor {
+    &:global(#{$theme-light}) {
+      fill: $colorIconDark;
+    }
+
+    &:global(#{$theme-dark}) {
+      fill: $colorIconHoverDark;
+    }
+  }
+}
+
+@mixin disable($css-props: 'color', $selector: '') {
+  &:global(#{$theme-light})#{$selector} {
+    #{$css-props}: $colorTextDisabledLight;
+    -webkit-text-fill-color: $colorTextDisabledLight;
+  }
+
+  &:global(#{$theme-dark})#{$selector} {
+    #{$css-props}: $colorTextDisabledDark;
+    -webkit-text-fill-color: $colorTextDisabledDark;
+  }
+}
+
+@mixin text($type: primary, $css-prop: 'color') {
+  @if $type == primary {
+    &:global(#{$theme-light}) {
+      #{$css-prop}: $colorTextPrimaryLight;
+      -webkit-text-fill-color: $colorTextPrimaryLight;
+    }
+
+    &:global(#{$theme-dark}) {
+      #{$css-prop}: $colorTextPrimaryDark;
+      -webkit-text-fill-color: $colorTextPrimaryDark;
+    }
+  }
+  @if $type == secondary {
+    &:global(#{$theme-light}) {
+      #{$css-prop}: $colorTextSecondaryLight;
+      -webkit-text-fill-color: $colorTextSecondaryLight;
+    }
+
+    &:global(#{$theme-dark}) {
+      #{$css-prop}: $colorTextSecondaryDark;
+      -webkit-text-fill-color: $colorTextSecondaryDark;
+    }
+  }
+  @if $type == tertiary {
+    &:global(#{$theme-light}) {
+      #{$css-prop}: $colorTextTertiaryLight;
+      -webkit-text-fill-color: $colorTextTertiaryLight;
+    }
+
+    &:global(#{$theme-dark}) {
+      #{$css-prop}: $colorTextTertiaryDark;
+      -webkit-text-fill-color: $colorTextTertiaryDark;
+    }
+  }
+  @if $type == quaternary {
+    &:global(#{$theme-light}) {
+      #{$css-prop}: $colorTextQuaternaryLight;
+      -webkit-text-fill-color: $colorTextQuaternaryLight;
+    }
+
+    &:global(#{$theme-dark}) {
+      #{$css-prop}: $colorTextQuaternaryDark;
+      -webkit-text-fill-color: $colorTextQuaternaryDark;
+    }
+  }
+  @if $type == disabled {
+    @include disable;
+  }
+  @if $type == reverse {
+    &:global(#{$theme-light}) {
+      #{$css-prop}: $colorTextButton;
+      -webkit-text-fill-color: $colorTextButton;
+    }
+
+    &:global(#{$theme-dark}) {
+      #{$css-prop}: $colorTextPrimaryLight;
+      -webkit-text-fill-color: $colorTextPrimaryLight;
+    }
+  }
+}
+
+@mixin link() {
+  &:global(#{$theme-light}) {
+    color: $colorLinkLight;
+
+    &:hover {
+      color: $colorLinkHoverLight;
+      -webkit-text-fill-color: $colorLinkHoverLight;
+    }
+
+    &:focus {
+      color: $colorLinkFocusLight;
+      -webkit-text-fill-color: $colorLinkFocusLight;
+
+      &::after {
+        background-color: $colorLinkFocusBgLight;
+      }
+    }
+
+    &:active {
+      color: $colorLinkActiveLight;
+      -webkit-text-fill-color: $colorLinkActiveLight;
+    }
+  }
+
+  &:global(#{$theme-dark}) {
+    color: $colorLinkDark;
+    -webkit-text-fill-color: $colorLinkDark;
+
+    &:hover {
+      color: $colorLinkHoverDark;
+      -webkit-text-fill-color: $colorLinkHoverDark;
+    }
+
+    &:focus {
+      color: $colorLinkFocusDark;
+      -webkit-text-fill-color: $colorLinkFocusDark;
+
+      &::after {
+        background-color: $colorLinkFocusBgDark;
+      }
+    }
+
+    &:active {
+      color: $colorLinkActiveDark;
+      -webkit-text-fill-color: $colorLinkActiveDark;
+    }
+  }
+}
+
+/* Example use selectors */
+//@include border($selector: ' .tab.tabActive');
+//@include border($selector: ' .tab:not(.tabActive)');
+
+@mixin border(
+  $primary: true,
+  $selector: '',
+  $css-prop: 'border-color',
+  $value-prefix: '',
+  $type: null
+) {
+  @if $primary {
+    &:global(#{$theme-light})#{$selector} {
+      #{$css-prop}: #{$value-prefix}$colorBorder1Light;
+    }
+
+    &:global(#{$theme-dark})#{$selector} {
+      #{$css-prop}: #{$value-prefix}$colorBorder1Dark;
+    }
+  } @else if $type == editor {
+    &:global(#{$theme-light})#{$selector} {
+      #{$css-prop}: #{$value-prefix}$colorBorder2Light;
+    }
+
+    &:global(#{$theme-dark})#{$selector} {
+      #{$css-prop}: #{$value-prefix}$colorIconHoverDark;
+    }
+  } @else if $type == pagination {
+    &:global(#{$theme-light})#{$selector} {
+      #{$css-prop}: #{$value-prefix}$colorBorder3Light;
+    }
+
+    &:global(#{$theme-dark})#{$selector} {
+      #{$css-prop}: #{$value-prefix}$colorBorder3Dark;
+    }
+  } @else {
+    &:global(#{$theme-light})#{$selector} {
+      #{$css-prop}: #{$value-prefix}$colorBorder2Light;
+    }
+
+    &:global(#{$theme-dark})#{$selector} {
+      #{$css-prop}: #{$value-prefix}$colorBorder2Dark;
+    }
+  }
+}
+
+@mixin brd($type) {
+  @if $type == tertiary {
+    &:global(#{$theme-light}) {
+      border-color: $colorBgTertiaryLight;
+    }
+
+    &:global(#{$theme-dark}) {
+      border-color: $colorBgTertiaryDark;
+    }
+  }
+}
+
+@mixin border-bottom(
+  $primary: true,
+  $selector: ''
+) {
+  @include border(
+    $primary: $primary,
+    $selector: $selector,
+    $css-prop: 'box-shadow',
+    $value-prefix: 'inset 0 -1px '
+  );
+}
+
+@mixin border-top(
+  $primary: true,
+  $selector: ''
+) {
+  @include border(
+    $primary: $primary,
+    $selector: $selector,
+    $css-prop: 'box-shadow',
+    $value-prefix: 'inset 0 1px '
+  );
+}
+
+@mixin textFieldContainer() {
+  border: 1px solid;
+  border-radius: $borderRadius_sm;
+  background-color: transparent;
+
+  @include border();
+
+  &.disabled,
+  &:disabled {
+    opacity: 0.4;
+  }
+
+  &.success {
+    border-color: $colorSuccess;
+    caret-color: $colorSuccess;
+  }
+
+  &:focus,
+  &.focus {
+    border-color: $colorBrand;
+  }
+
+  &.error {
+    border-color: $colorError;
+    caret-color: $colorError;
+  }
+}
+
+@mixin textField($size: medium) {
+  font-family: $fontPrimary;
+  background-color: transparent;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.1px;
+
+  @if $size == small {
+    font-size: 13px;
+  } @else if $size == medium {
+    font-size: 16px;
+  } @else if $size == exchange {
+    font-family: $fontFira;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  &::placeholder {
+    font-family: $fontPrimary;
+    color: $colorBrandDisabled;
+    -webkit-text-fill-color: $colorBrandDisabled;
+  }
+
+  &:global(#{$theme-light}) {
+    color: $colorTextPrimaryLight;
+    -webkit-text-fill-color: $colorTextPrimaryLight;
+  }
+
+  &:global(#{$theme-dark}) {
+    color: $colorTextPrimaryDark;
+    -webkit-text-fill-color: $colorTextPrimaryDark;
+  }
+
+  &:focus {
+    caret-color: $colorBrand;
+    outline: none;
+  }
+}
+
+@mixin getBackgroundLight() {
+  background-color: $colorModalBoxBgLight;
+  box-shadow: 0 2px 8px rgba($colorModalBoxShadowLight, 0.4);
+}
+
+@mixin getBackgroundDark() {
+  background-color: $colorModalBoxBgDark;
+  box-shadow: 0 2px 8px rgba($colorModalBoxShadowDark, 0.4);
+}
+
+@mixin exchangeWidgetLight() {
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2), 0px 0px 2px rgba(0, 0, 0, 0.2);
+  
+  &:global(#{$theme-dark}) {
+    background-color: $colorMainBgDark;
+    border: 1px solid $colorBorder1Dark;
+  }
+
+  &:global(#{$theme-light}) {
+    background-color: $colorMainBgLight;    
+    border: 1px solid transparent;
+  }
+}
+
+@mixin getModalBorder($isModal: false) {
+  @if $isModal {
+    border-radius: $borderRadius_md;
+  } @else {
+    border-radius: $borderRadius_sm;
+  }
+}
+
+@mixin modal($isModal: false) {
+  @include getModalBorder($isModal);
+
+  &:global(#{$theme-light}) {
+    @include getBackgroundLight();
+  }
+
+  &:global(#{$theme-dark}) {
+    @include getBackgroundDark();
+  }
+}
+
+@mixin scrollBar() {
+  &::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+  }
+
+  &:global(#{$theme-light}) {
+    &::-webkit-scrollbar-thumb {
+      background-color: $colorBorder2Light;
+    }
+
+    scrollbar-color: $colorBorder2Light transparent;
+  }
+
+  &:global(#{$theme-dark}) {
+    &::-webkit-scrollbar-thumb {
+      background-color: $colorBorder2Dark;
+    }
+
+    scrollbar-color: $colorBorder2Dark transparent;
+  }
+
+  scrollbar-width: thin;
+}
+
+@mixin getCalendarOuterWrapper($selector) {
+  #{$selector} {
+    display: inline-block;
+    position: relative;
+
+    &:global(#{$theme-dark}) {
+      .months {
+        @include getModalBorder();
+        @include getBackgroundDark();
+      }
+    }
+
+    &:global(#{$theme-light}) {
+      .months {
+        @include getModalBorder();
+        @include getBackgroundLight();
+      }
+    }
+  }
+}
+
+@mixin hiddenText() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin boxShadow($type: tertiary) {
+  @if $type == tertiary {
+    &:global(#{$theme-light}) {
+      box-shadow: $shadow_3_light;
+    }
+
+    &:global(#{$theme-dark}) {
+      box-shadow: $shadow_3_dark;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+// Fonts names
+$fontPrimary: 'IBM Plex Sans', sans-serif;
+$fontSecondary: 'Fira Sans Condensed', sans-serif;
+$fontFira: 'Fira Sans', sans-serif;
+
+/*
+  Переопределение стилей в конкретном проекте
+*/
+@import "../theme/fonts";

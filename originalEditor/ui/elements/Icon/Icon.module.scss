@@ -1,0 +1,68 @@
+@import "../../css/vars/colors";
+@import "../../css/vars/all";
+
+.icon {
+  vertical-align: middle;
+}
+
+.t {
+  width: $icon-t;
+  height: $icon-t;
+}
+
+.s {
+  width: $icon-s;
+  height: $icon-s;
+}
+
+.m {
+  width: $icon-m;
+  height: $icon-m;
+}
+
+.l {
+  width: $icon-l;
+  height: $icon-l;
+}
+
+.b {
+  width: $icon-b;
+  height: $icon-b;
+}
+
+.state {
+  fill: $colorIconLight;
+
+  &:hover {
+    fill: $colorIconHoverLight !important;
+  }
+
+  &.active {
+    fill: $colorIconActiveLight !important;
+  }
+}
+
+.stroke {
+  stroke: $colorIconLight;
+
+  &:hover {
+    stroke: $colorIconHoverLight;
+  }
+
+  &.active {
+    stroke: $colorIconActiveLight;
+  }
+}
+
+.clicked {
+  cursor: pointer;
+}
+
+.fillWhite {
+  fill: $colorTextButton;
+}
+
+.disabled {
+  pointer-events: none;
+  fill: $colorTextDisabledDark;
+}

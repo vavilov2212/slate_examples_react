@@ -1,0 +1,113 @@
+// General
+$colorError: #FF0000;
+$colorAttention: #FFA815;
+$colorSuccess: #27AE60;
+$colorSell: #FF3A3A;
+$colorSellHover: #FF5050;
+$colorSellActive: #AD1625;
+$colorSellDisabled: #A9B5C4;
+$colorBuy: #23C62A;
+$colorBuyHover: #38DA3F;
+$colorBuyActive: #1F9C24;
+$colorBuyDisabled: #A9B5C4;
+$colorWait: #FFA815;
+$colorBrand: #08C0A0;
+$colorBrandHover: #08D0B8;
+$colorBrandActive: #0CA67E;
+$colorBrandDisabled: #A9B5C4;
+$colorInputDisabled: #1B2431;
+$colorTextButton: #FFFFFF;
+$colorFocusButton: #7F8FA4;
+$colorShade: rgba(#000, .75);
+$colorCurrencyIcon: #D9D9D9;
+$colorStable: #ffa500;
+$colorSwap: #22C7A9;
+
+// Light theme
+$colorMainBgLight: #FFFFFF;
+$colorBgPrimaryLight: #F7F9FB;
+$colorBgSecondaryLight: #FFFFFF;
+$colorBgTertiaryLight: #EFF3F6;
+$colorBgQuaternaryLight: #EFF3F6;
+$colorBgQuinaryLight: #546377;
+$colorLinkLight: #2090E8;
+$colorLinkHoverLight: #0D47A1;
+$colorLinkActiveLight: #1565C0;
+$colorLinkFocusLight: #0D47A1;
+$colorLinkFocusBgLight: #A9B5C4;
+$colorTextPrimaryLight: #202838;
+$colorTextSecondaryLight: #9098A8;
+$colorTextTertiaryLight: #596A80;
+$colorTextQuaternaryLight: #1B2431;
+$colorTextDisabledLight: #A9B5C4;
+$colorIconLight: #596A80;
+$colorIconHoverLight: #91E3D4;
+$colorIconActiveLight: #22C7A9;
+$colorIconSelectedLight: #22C7A9;
+$colorBorder1Light: #D8DCE4;
+$colorBorder2Light: #E8ECF0;
+$colorBorder3Light: #E1E9F0;
+$colorModalBoxShadowLight: #1B2431;
+$colorModalBoxBgLight: #FFFFFF;
+$colorTooltipBgLight: #273142;
+$colorFooterBgLight: #F7F9FB;
+$colorBgSelectedLight: #F0F2F6;
+$colorBgLight: #EFF3F6;
+
+// Dark theme
+$colorMainBgDark: #242830;
+$colorBgPrimaryDark: #273142;
+$colorBgSecondaryDark: #384356;
+$colorBgTertiaryDark: #546377;
+$colorBgQuaternaryDark: #384356;
+$colorBgQuinaryDark: #7F8FA4;
+$colorLinkDark: #2880d0;
+$colorLinkHoverDark: #448AFF;
+$colorLinkActiveDark: #2196F3;
+$colorLinkFocusDark: #448AFF;
+$colorLinkFocusBgDark: #596A80;
+$colorTextPrimaryDark: #D8E0E8;
+$colorTextSecondaryDark: #808898;
+$colorTextTertiaryDark: #D3DCE3;
+$colorTextQuaternaryDark: #FFFFFF;
+$colorTextDisabledDark: #A9B5C4;
+$colorIconDark: #596A80;
+$colorIconHoverDark: #7F8FA4;
+$colorIconActiveDark: #22C7A9;
+$colorIconSelectedDark: #22C7A9;
+$colorBorder1Dark: #384050;
+$colorBorder2Dark: #303438;
+$colorBorder3Dark: #546377;
+$colorModalBoxShadowDark: #FFFFFF;
+$colorModalBoxBgDark: #273142;
+$colorTooltipBgDark: #FFFFFF;
+$colorFooterBgDark: #273142;
+$colorBgSelectedDark: #1C2024;
+
+// Hallon colors
+@if (variable-exists(project) and $project == 'hallon') {
+  $colorBrand: #3E39EB;
+  $colorBrandHover: #A5A1F4;
+  $colorBrandActive: #302CB8;
+  $colorIconHoverLight: #A5A1F4;
+  $colorIconActiveLight: #3E39EB;
+  $colorIconSelectedLight: #3E39EB;
+  $colorIconActiveDark: #3E39EB;
+  $colorIconSelectedDark: #3E39EB;
+}
+
+// Exchange colors
+$colorBgHighlightLight: transparentize($colorLinkLight, 0.85);
+$colorTerminalBgLight: #EDF0F4;
+$colorBgSellLight: #FF3048;
+$colorBgBuyLight: #00C838;
+
+$colorBgHighlightDark: transparentize($colorLinkLight, 0.80);
+$colorTerminalBgDark: #202428;
+$colorBgSellDark: $colorBgSellLight;
+$colorBgBuyDark: #007420;
+
+/*
+  Переопределение стилей в конкретном проекте
+*/
+@import "../theme/colors";

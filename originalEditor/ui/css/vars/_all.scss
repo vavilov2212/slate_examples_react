@@ -1,0 +1,38 @@
+$theme-light: '.theme-light';
+$theme-dark: '.theme-dark';
+
+$spacing_xxxs: 2px;
+$spacing_xxs: 4px;
+$spacing_xs: 8px;
+$spacing_ss: 10px;
+$spacing_sm: 16px;
+$spacing_md: 24px;
+$spacing_bg: 32px;
+$spacing_lg: 48px;
+
+$borderRadius_sm: 2px;
+$borderRadius_md: 4px;
+
+$borderRadius_ex_sm: 3px;
+$borderRadius_ex_lg: 6px;
+
+$icon-t: 13px;
+$icon-s: 16px;
+$icon-m: 24px;
+$icon-l: 32px;
+$icon-b: 48px;
+
+$breakpoint_s: 1023px;
+$breakpoint_m: 1279px;
+$breakboint_l: 1439px;
+$breakpoint_xl: 1679px;
+
+$shadow_1: 0 24px 32px rgba(0, 0, 0, 0.04), 0 16px 24px rgba(0, 0, 0, 0.04), 0 4px 8px rgba(0, 0, 0, 0.04), 0 0 1px rgba(0, 0, 0, 0.04);
+$shadow_2: 0 10px 20px rgba(25, 28, 31, 0.06), 0 2px 6px rgba(25, 28, 31, 0.06), 0 0 1px rgba(25, 28, 31, 0.06);
+$shadow_3_light: 0 51px 130px rgba(63, 67, 70, 0.08), 0 16px 40px rgba(63, 67, 70, 0.07), 0px 2px 9px rgba(63, 67, 70, 0.04);
+$shadow_3_dark: 0px 4px 35px 10px rgba(0, 0, 0, 0.1), 0px -4px 20px rgba(0, 0, 0, 0.1);
+
+/*
+  Переопределение стилей в конкретном проекте
+*/
+@import "../theme/all";

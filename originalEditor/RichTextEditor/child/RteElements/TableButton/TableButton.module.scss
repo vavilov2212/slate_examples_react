@@ -1,0 +1,74 @@
+@import '../../../../../ui/css/vars/all';
+@import '../../../../../ui/css/vars/colors';
+@import '../../../../../ui/css/mixins/base';
+
+.rteTable, .rteCell {
+  border: 1px solid black;
+}
+
+.rteTable {
+  width: 100%;
+}
+
+.rteCell {
+  padding: 16px;
+}
+
+.rteTableBlockButton {
+  @include fillColor(editor);
+  cursor: pointer;
+  margin-right: 24px;
+
+  &.active {
+    fill: $colorBrand;
+  }
+
+  &.disabled {
+    fill: $colorTextDisabledLight;
+  }
+}
+
+.rteTableButtonWrapper {
+  flex-direction: row;
+  display: flex;
+  position: relative;
+}
+
+.rteTableInputWrapper {
+  position: absolute;
+  padding: 8px;
+  width: fit-content;
+  width: -moz-fit-content;
+  align-items: center;
+  @include bg(editor);
+  box-shadow: $shadow_1;
+  font-size: 18px;
+  top: 150%;
+  z-index: 1000;
+  display: none;
+
+  &.open {
+    display: flex;
+  }
+}
+
+.rteTableInputButton {
+  position: absolute;
+  @include bg(secondary);
+  box-shadow: $shadow_1;
+  font-size: 18px;
+  top: 150%;
+  display: none;
+}
+
+.rteTableFloatingControl {
+  padding: 4px;
+  font-size: 18px;
+  border-radius: 8px;
+  max-width: 50px;
+  margin: 0 10px;
+}
+
+.rteTableApply {
+  cursor: pointer;
+}

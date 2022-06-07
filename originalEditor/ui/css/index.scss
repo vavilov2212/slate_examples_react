@@ -1,0 +1,7 @@
+@import './vars/colors';
+@import './mixins/base';
+
+body {
+  background-color: $colorMainBgLight;
+  @include background;
+}

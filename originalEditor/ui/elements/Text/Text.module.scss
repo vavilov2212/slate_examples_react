@@ -1,0 +1,428 @@
+@import '../../css/vars/fonts';
+@import '../../css/vars/all';
+@import '../../css/mixins/base';
+
+.h1 {
+  font-family: $fontPrimary;
+  font-size: 96px;
+  margin: 0;
+  font-weight: 300;
+  letter-spacing: -1.5px;
+
+  @extend .weight;
+}
+
+.h2 {
+  font-family: $fontPrimary;
+  font-size: 60px;
+  line-height: 88px;
+  margin: 0;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+
+  @extend .weight;
+}
+
+.h3 {
+  font-family: $fontPrimary;
+  font-size: 48px;
+  margin: 0;
+  font-weight: normal;
+
+  @extend .weight;
+}
+
+.h4 {
+  font-family: $fontPrimary;
+  font-size: 34px;
+  line-height: 56px;
+  margin: 0;
+  font-weight: normal;
+  letter-spacing: 0.25px;
+
+  @extend .weight;
+}
+
+.h4dot5 {
+  font-family: $fontPrimary;
+  font-size: 28px;
+  margin: 0;
+  font-weight: normal;
+
+  @extend .weight;
+}
+
+.h5 {
+  font-family: $fontPrimary;
+  font-size: 24px;
+  line-height: 40px;
+  margin: 0;
+  font-weight: normal;
+
+  @extend .weight;
+}
+
+.h6 {
+  font-family: $fontPrimary;
+  font-size: 20px;
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 0.25px;
+
+  @extend .weight;
+}
+
+.text-normal {
+  font-family: $fontPrimary;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  margin: 0;
+
+  @extend .weight;
+}
+
+.text-small {
+  font-family: $fontPrimary;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 500;
+  letter-spacing: 0.25px;
+  margin: 0;
+
+  @extend .weight;
+}
+
+.subtitle-normal {
+  font-family: $fontPrimary;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  margin: 0;
+
+  @extend .weight;
+}
+
+.subtitle-small {
+  font-family: $fontPrimary;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 0.1px;
+  margin: 0;
+  font-weight: 500;
+
+  @extend .weight;
+}
+
+.btn-text-small {
+  font-family: $fontPrimary;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: 1.25px;
+  font-weight: 500;
+  margin: 0;
+
+  @extend .weight;
+}
+
+.caption1 {
+  font-family: $fontPrimary;
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  line-height: 18px;
+  margin: 0;
+
+  @extend .weight;
+}
+
+.caption2 {
+  font-family: $fontPrimary;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  line-height: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+  margin: 0;
+
+  @extend .weight;
+}
+
+.caption3 {
+  font-family: $fontPrimary;
+  font-size: 10px;
+  letter-spacing: 0.4px;
+  line-height: 18px;
+  margin: 0;
+
+  @extend .weight;
+}
+
+.caption4 {
+  font-family: $fontPrimary;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: 0.4px;
+  line-height: 16px;
+  margin: 0;
+
+  @extend .weight;
+}
+
+.table-header {
+  font-family: $fontPrimary;
+  font-size: 13px;
+  line-height: 18px;
+  margin: 0;
+  font-weight: normal;
+  @extend .weight;
+}
+
+.table-cell {
+  font-family: $fontPrimary;
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 500;
+  margin: 0;
+
+  @extend .weight;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.weight {
+  &.lightWeight {
+    font-weight: 300;
+  }
+
+  &.normalWeight {
+    font-weight: normal;
+  }
+
+  &.mediumWeight {
+    font-weight: 500;
+  }
+}
+
+.align-left {
+  text-align: start;
+}
+
+.align-right {
+  text-align: end;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.primary {
+  @include text();
+}
+
+.secondary {
+  @include text(secondary);
+}
+
+.tertiary {
+  @include text(tertiary);
+}
+
+.quaternary {
+  @include text(quaternary);
+}
+
+.disabled {
+  @include text(disabled);
+}
+
+.reverse {
+  @include text(reverse);
+}
+
+.font-primary {
+  font-family: $fontPrimary;
+}
+
+.font-secondary {
+  font-family: $fontSecondary;
+}
+
+.buy {
+  color: $colorBuy;
+  -webkit-text-fill-color: $colorBuy;
+}
+
+.exchange-buy {
+  color: $colorBgBuyLight;
+  -webkit-text-fill-color: $colorBgBuyLight;
+}
+
+.error {
+  color: $colorError;
+  -webkit-text-fill-color: $colorError;
+}
+
+.sell {
+  color: $colorSell;
+  -webkit-text-fill-color: $colorSell;
+}
+
+.wait {
+  color: $colorWait;
+  -webkit-text-fill-color: $colorWait;
+}
+
+.exchange-sell {
+  color: $colorBgSellLight;
+  -webkit-text-fill-color: $colorBgSellLight;
+}
+
+.stable {
+  color: $colorStable;
+  -webkit-text-fill-color: $colorStable;
+}
+
+.white {
+  color: $colorTextButton;
+  -webkit-text-fill-color: $colorTextButton;
+}
+
+.brand {
+  color: $colorBrand;
+  -webkit-text-fill-color: $colorBrand;
+}
+
+.swap {
+  color: $colorSwap;
+  -webkit-text-fill-color: $colorSwap;
+}
+
+.inherit {
+  color: inherit;
+  -webkit-text-fill-color: inherit;
+}
+
+.link {
+  @include link();
+}
+
+.clicked {
+  cursor: pointer;
+}
+
+// exchange text styles
+
+.exchange-h1 {
+  font-family: $fontFira;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 50px;
+  letter-spacing: 0.25px;
+}
+
+.exchange-h3 {
+  font-family: $fontFira;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 25px;
+  letter-spacing: 0.25px;
+}
+
+.exchange-h4 {
+  font-family: $fontFira;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 25px;
+  letter-spacing: 0.25px;
+}
+
+.exchange-normal {
+  font-family: $fontFira;
+  font-size: 12px;
+  line-height: 15px;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.exchange-small {
+  font-family: $fontFira;
+  font-size: 10px;
+  line-height: 15px;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.exchange-tab-header {
+  font-family: $fontSecondary;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 15px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.exchange-big-tab-header {
+  font-family: $fontFira;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.exchange-table-header {
+  font-family: $fontFira;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 15px;
+}
+
+.exchange-table-cell-header {
+  font-family: $fontFira;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.exchange-table-cell {
+  font-family: $fontFira;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.exchange-instruments-price {
+  font-family: $fontFira;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.exchange-button {
+  font-family: $fontFira;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.exchange-input {
+  font-family: $fontFira;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+}
