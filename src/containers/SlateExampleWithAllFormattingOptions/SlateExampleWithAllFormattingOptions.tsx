@@ -39,7 +39,7 @@ export default function IndexPage() {
       <p>Slate editor with most common formatting options</p>
       <div className={styles.columnsContainer}>
         <SlateProviderWrapper editor={editor} value={value} onChange={setValue}>
-          <SlateToolbar formattingOptions={['link', 'strong', 'emphasis', 'underline', 'strikethrough', 'numbered-list', 'bulleted-list', 'left', 'center', 'right', 'justify' ]} />
+          <SlateToolbar formattingOptions={['link', 'strong', 'emphasis', 'underline', 'strikethrough', 'code', 'inlineCode'/*, 'heading1'*/, 'heading2'/*, 'heading3'*/, 'numbered-list', 'bulleted-list'/*, 'left', 'center', 'right', 'justify'*/ ]} />
           <SlateEditable />
         </SlateProviderWrapper>
         <div className={styles.serializedCotainer}>
@@ -75,41 +75,35 @@ const serialize = (value: Descendant[]) => {
       ['list-item']: (node: Node, next) => {
         return ({
           type: 'listItem',
-          children: next(node.children),
+          children: next(getSeralizedChildren(node.children)),
         })
+      },
+      heading1: (node: any, next) => {
+        return ({
+          type: 'heading',
+          depth: 1,
+          children: next(node.children),
+        });
+      },
+      heading2: (node: any, next) => {
+        return ({
+          type: 'heading',
+          depth: 2,
+          children: next(node.children),
+        });
+      },
+      heading3: (node: any, next) => {
+        return ({
+          type: 'heading',
+          depth: 3,
+          children: next(node.children),
+        });
       },
       // https://github.com/inokawa/remark-slate-transformer/issues/31#issuecomment-1146665213
       paragraph: (node: Node, next) => {
-        const children = node.children.map(child => {
-          let rChild = { ...child };
-          let rText = rChild.text;
-
-          if (child.text && child.underline) {
-            rText = `<u>${rText}</u>`;
-
-            delete rChild.text;
-            rChild = { ...rChild, text: rText };
-          }
-          if (child.text && child.strikethrough) {
-            rText = `~~${rText}~~`;
-
-            delete rChild.text;
-            rChild = { ...rChild, text: rText };
-
-            /*
-             * This works without replacing escape characters afterwards, but requires 
-             * that each mark is proccessed here. Otherwise this will override other marks
-             * applied to this node (eg. it can't be bold and strikethrough at the same time)
-             *
-             * return { ...modifiedChild, type: 'html', children: [ { text: `~${child.text}~` }] }
-            */
-          }
-          return rChild;
-        });
-
         return ({
           type: "paragraph",
-          children: next(children),
+          children: next(getSeralizedChildren(node.children)),
         });
       },
     },}).use(stringify);
@@ -131,4 +125,49 @@ const withInlines = (editor: Editor) => {
   }
 
   return editor;
+};
+
+const getSeralizedChildren = (children: any) => {
+  return children.map(child => {
+    let rChild = { ...child };
+    let rText = rChild.text;
+
+    if (child.text && child.underline) {
+      rText = `<u>${rText}</u>`;
+
+      delete rChild.text;
+      rChild = { ...rChild, text: rText };
+    }
+    if (child.text && child.strikethrough) {
+      rText = `~~${rText}~~`;
+
+      delete rChild.text;
+      rChild = { ...rChild, text: rText };
+
+      /*
+        * This works without replacing escape characters afterwards, but requires 
+        * that each mark is proccessed here. Otherwise this will override other marks
+        * applied to this node (eg. it can't be bold and strikethrough at the same time)
+        *
+        * return { ...modifiedChild, type: 'html', children: [ { text: `~${child.text}~` }] }
+      */
+    }
+    if (child.text && child.code) {
+      const quotations = '```';
+
+      rText = `${quotations}Shell\n${rText}\n${quotations}`;
+
+      delete rChild.text;
+      rChild = { ...rChild, text: rText };
+    }
+    if (child.text && child.highlight) {
+      const quotations = '`';
+
+      rText = `${quotations}${rText}${quotations}`;
+
+      delete rChild.text;
+      rChild = { ...rChild, text: rText };
+    }
+    return rChild;
+  });
 };

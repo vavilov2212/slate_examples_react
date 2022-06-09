@@ -21,6 +21,7 @@ export default function IndexPage() {
 const Element = (props: any) => {
   const { attributes, children, element } = props
   const style = { textAlign: element.align };
+
   switch (element.type) {
     case 'link': {
       const selected = useSelected()
@@ -53,6 +54,24 @@ const Element = (props: any) => {
           {children}
         </li>
       )
+    case 'heading1':
+      return (
+        <h1 style={style} {...attributes}>
+          {children}
+        </h1>
+      )
+    case 'heading2':
+      return (
+        <h2 style={style} {...attributes}>
+          {children}
+        </h2>
+      )
+    case 'heading3':
+      return (
+        <h3 style={style} {...attributes}>
+          {children}
+        </h3>
+      )
     default: {
       return <p style={style} {...attributes}>{children}</p>
     }
@@ -71,6 +90,12 @@ const Leaf = ({ attributes, children, leaf }) => {
   }
   if (leaf.strikethrough) {
     children = <s>{children}</s>
+  }
+  if (leaf.code) {
+    children = <code>{children}</code>
+  }
+  if (leaf.inlineCode) {
+    children = <mark>{children}</mark>
   }
 
   return <span {...attributes}>{children}</span>;

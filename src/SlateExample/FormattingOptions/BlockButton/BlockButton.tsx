@@ -9,14 +9,14 @@ import styles from './BlockButton.module.scss';
 
 interface BlockButtonProps {
   format: FormattingOption;
-  icon: SVGElement;
+  Icon: any;
 }
 
 const LIST_TYPES = ['numbered-list', 'bulleted-list']
 const TEXT_ALIGN_TYPES = ['left', 'center', 'right', 'justify']
 
 const BlockButton = (props: BlockButtonProps) => {
-  const { format, icon: Icon } = props;
+  const { format, Icon } = props;
   const editor = useSlate();
 
   const isBlockActive = (editor, format, blockType = 'type') => {
