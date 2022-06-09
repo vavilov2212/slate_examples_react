@@ -36,18 +36,24 @@ export default function IndexPage() {
 
   return (
     <div className={styles.pageContainer}>
-      <p>Slate editor with most common formatting options</p>
-      <div className={styles.columnsContainer}>
+      <h1>Slate editor with most common formatting options</h1>
+      <div className={styles.rowsContainer}>
         <SlateProviderWrapper editor={editor} value={value} onChange={setValue}>
-          <SlateToolbar formattingOptions={['link', 'strong', 'emphasis', 'underline', 'strikethrough', 'code', 'inlineCode'/*, 'heading1'*/, 'heading2'/*, 'heading3'*/, 'numbered-list', 'bulleted-list'/*, 'left', 'center', 'right', 'justify'*/ ]} />
+          <SlateToolbar formattingOptions={['link', 'strong', 'emphasis', 'underline', 'strikethrough', 'code', 'inlineCode', 'heading1', 'heading2', 'heading3', 'numbered-list', 'bulleted-list'/*, 'left', 'center', 'right', 'justify'*/ ]} />
           <SlateEditable />
         </SlateProviderWrapper>
         <div className={styles.serializedCotainer}>
-          <span>Serialized value:</span>
-          {serialize(value)}
-          <div className={styles.slateJsonCotainer}>
+          <div className={styles.serializedCotainerValueColumn}>
+            <span>Serialized value:</span>
+            <div className={styles.serializedValueContainer}>
+              {serialize(value)}
+            </div>
+          </div>
+          <div className={styles.serializedCotainerSlateJsonColumn}>
             <span>Slate JSON value:</span>
-              {JSON.stringify(value)}
+            <div className={styles.slateJsonCotainer}>
+                {JSON.stringify(value, null, 4)}
+            </div>
           </div>
         </div>
       </div>

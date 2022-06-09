@@ -28,7 +28,7 @@ export default function IndexPage() {
         </SlateProviderWrapper>
         <div className={styles.slateJsonCotainer}>
           <span>Slate JSON value:</span>
-            {JSON.stringify(value)}
+            {JSON.stringify(value, null, 4)}
         </div>
       </div>
     </div>

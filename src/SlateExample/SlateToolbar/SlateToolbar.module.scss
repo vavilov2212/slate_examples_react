@@ -1,4 +1,7 @@
 .slateToolbar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(42px, auto));
   grid-row-gap: 12px;
@@ -8,4 +11,5 @@
   border: 1px solid #E8ECF0;
   border-bottom-width: 1px;
   border-bottom-style: solid;
+  z-index: 1;
 }

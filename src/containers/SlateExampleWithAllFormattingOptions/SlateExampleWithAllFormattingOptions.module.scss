@@ -5,36 +5,44 @@
   margin: 25px;
 }
 
-.columnsContainer {
+.rowsContainer {
   display: flex;
-  gap: 15px;
+  flex-direction: column;
+  gap: 32px;
 
   & > :first-child {
     max-width: unset;
   }
-
-  & > * {
-    flex: 1;
-  }
 }
 
 .serializedCotainer {
-  padding: 15px;
-  background: #80808008;
-  border: 1px solid #E8ECF0;
+  display: flex;
+  gap: 15px;
   white-space: pre-wrap;
   word-wrap: anywhere;
   word-break: break-all;
 
-  & > :first-child {
+  & * :first-child {
     display: block;
-    margin-bottom: 15px;
     text-decoration: underline;
     font-size: 1.25em;
   }
 }
 
-.slateJsonCotainer {
+.serializedValueContainer, .slateJsonCotainer {
+  padding: 15px;
+  background: #80808008;
+  border: 1px solid #E8ECF0;
+}
+
+.serializedCotainerSlateJsonColumn, .serializedCotainerValueColumn {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.serializedValueContainer, .slateJsonCotainer {
+  flex: 1;
   margin-top: 15px;
 
   & > :first-child {
