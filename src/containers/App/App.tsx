@@ -1,14 +1,20 @@
-import React, {useState} from 'react';
-import SlateWithLinks from 'containers/SlateWithLinks/SlateWithLinks';
-import SlateWithMarkdownSerialize from 'containers/SlateWithMarkdownSerialize/SlateWithMarkdownSerialize';
-import SlateExampleWithAllFormattingOptions from 'containers/SlateExampleWithAllFormattingOptions/SlateExampleWithAllFormattingOptions';
+import React from 'react';
 
 const App = () => {
   return(
     <>
-      <SlateWithLinks />
-      <SlateWithMarkdownSerialize />
-      <SlateExampleWithAllFormattingOptions />
+      <p>Examples</p>
+    <ul>
+      <li>
+        <a href="/withLinks">Slate with `Link` button</a>
+      </li>
+      <li>
+        <a href="/withMarkdownSerialize">Slate with `Link` button and serialize to markdown</a>
+      </li>
+      <li>
+        <a href="/withAllFormattingOptions">Slate with all formatting buttons and serialize to markdown</a>
+      </li>
+    </ul>
     </>
   );
 }
