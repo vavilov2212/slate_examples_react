@@ -36,6 +36,13 @@ const Element = (props: any) => {
         </a>
       );
     }
+    case 'code': {
+      return (
+        <code style={style} {...attributes}>
+          {children}
+        </code>
+      )
+    }
     case 'bulleted-list':
       return (
         <ul style={style} {...attributes}>
@@ -90,9 +97,6 @@ const Leaf = ({ attributes, children, leaf }) => {
   }
   if (leaf.strikethrough) {
     children = <s>{children}</s>
-  }
-  if (leaf.code) {
-    children = <code>{children}</code>
   }
   if (leaf.inlineCode) {
     children = <mark>{children}</mark>

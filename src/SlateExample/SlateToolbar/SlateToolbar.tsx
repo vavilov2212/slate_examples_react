@@ -51,7 +51,7 @@ export default function SlateProviderWrapper(props: any) {
     emphasis: (props: any) => <MarkButton format={'emphasis'} Icon={italic} {...props} />,
     underline: (props: any) => <MarkButton format={'underline'} Icon={underline} {...props} />,
     strikethrough: (props: any) => <MarkButton format={'strikethrough'} Icon={strikethrough} {...props} />,
-    code: (props: any) => <MarkButton format={'code'} Icon={code} {...props} />,
+    code: (props: any) => <CodeButton format={'code'} Icon={code} {...props} />,
     inlineCode: (props: any) => <MarkButton format={'inlineCode'} Icon={inlineCode} {...props} />,
     heading1: (props: any) => <BlockButton format={'heading1'} Icon={heading1} {...props} />,
     heading2: (props: any) => <BlockButton format={'heading2'} Icon={heading2} {...props} />,
@@ -85,6 +85,12 @@ const MarkButton = ({ format, Icon, ...rest }) => {
 
 const BlockButton = ({ format, Icon }) => {
   const Component = dynamic(() => import('SlateExample/FormattingOptions/BlockButton/BlockButton'));
+
+  return <Component format={format} Icon={Icon} />;
+};
+
+const CodeButton = ({ format, Icon }) => {
+  const Component = dynamic(() => import('SlateExample/FormattingOptions/BlockCodeButton/CodeButton'));
 
   return <Component format={format} Icon={Icon} />;
 };

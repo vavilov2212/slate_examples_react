@@ -1,7 +1,4 @@
 .pageContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
   margin: 25px;
 }
 
@@ -9,6 +6,7 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
+  height: calc(100vh - 50px - 33px - 19px);
 
   & > :first-child {
     max-width: unset;
@@ -18,6 +16,7 @@
 .serializedCotainer {
   display: flex;
   gap: 15px;
+  overflow: hidden;
   white-space: pre-wrap;
   word-wrap: anywhere;
   word-break: break-all;
@@ -29,17 +28,29 @@
   }
 }
 
-.serializedValueContainer, .slateJsonCotainer {
+.serializedCotainerValueColumn, .serializedCotainerSlateJsonColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.serializedCotainerValueColumn {
+  width: max-content;
+  max-width: 50%;
+}
+
+.serializedCotainerSlateJsonColumn {
+  flex: 1;
+}
+
+.serializedValueInner, .slateJsonValueInner {
+  flex: 1;
   padding: 15px;
   background: #80808008;
   border: 1px solid #E8ECF0;
+  overflow: scroll;
 }
 
-.serializedCotainerSlateJsonColumn, .serializedCotainerValueColumn {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
 
 .serializedValueContainer, .slateJsonCotainer {
   flex: 1;

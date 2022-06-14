@@ -25,11 +25,24 @@ export default function IndexPage() {
       ],
     },
     {
+      type: "paragraph",
+      children: [
+        {
+          text: "All of the marks",
+          strong: true,
+          emphasis: true,
+          underline: true,
+          strikethrough: true,
+          inlineCode: true
+        }
+      ]
+    },
+    {
       type: 'paragraph',
       children: [
         { text: 'This is regular text' },
       ],
-    }
+    },
   ])
 
   const editor = useMemo(() => withInlines(withReact(withHistory(createEditor()))), [])
@@ -45,13 +58,13 @@ export default function IndexPage() {
         <div className={styles.serializedCotainer}>
           <div className={styles.serializedCotainerValueColumn}>
             <span>Serialized value:</span>
-            <div className={styles.serializedValueContainer}>
+            <div className={styles.serializedValueInner}>
               {serialize(value)}
             </div>
           </div>
           <div className={styles.serializedCotainerSlateJsonColumn}>
             <span>Slate JSON value:</span>
-            <div className={styles.slateJsonCotainer}>
+            <div className={styles.slateJsonValueInner}>
                 {JSON.stringify(value, null, 4)}
             </div>
           </div>
@@ -81,7 +94,7 @@ const serialize = (value: Descendant[]) => {
       ['list-item']: (node: Node, next) => {
         return ({
           type: 'listItem',
-          children: next(getSeralizedChildren(node.children)),
+          children: next(serializeMarks(node.children)),
         })
       },
       heading1: (node: any, next) => {
@@ -109,10 +122,11 @@ const serialize = (value: Descendant[]) => {
       paragraph: (node: Node, next) => {
         return ({
           type: "paragraph",
-          children: next(getSeralizedChildren(node.children)),
+          children: next(serializeMarks(node.children)),
         });
       },
-    },}).use(stringify);
+    },
+  }).use(stringify);
 
   const ast = processor.runSync({
     type: "root",
@@ -120,7 +134,7 @@ const serialize = (value: Descendant[]) => {
   });
   const mdText = processor.stringify(ast);
 
-  return mdText.replace(/\\(?=<|~)/g, '');
+  return mdText.replace(/\\(?=<|~|`)/g, '');
 };
 
 const withInlines = (editor: Editor) => {
@@ -133,7 +147,7 @@ const withInlines = (editor: Editor) => {
   return editor;
 };
 
-const getSeralizedChildren = (children: any) => {
+const serializeMarks = (children: any) => {
   return children.map(child => {
     let rChild = { ...child };
     let rText = rChild.text;
@@ -141,13 +155,13 @@ const getSeralizedChildren = (children: any) => {
     if (child.text && child.underline) {
       rText = `<u>${rText}</u>`;
 
-      delete rChild.text;
+      delete rChild.underline;
       rChild = { ...rChild, text: rText };
     }
     if (child.text && child.strikethrough) {
       rText = `~~${rText}~~`;
 
-      delete rChild.text;
+      delete rChild.strikethrough;
       rChild = { ...rChild, text: rText };
 
       /*
@@ -158,22 +172,15 @@ const getSeralizedChildren = (children: any) => {
         * return { ...modifiedChild, type: 'html', children: [ { text: `~${child.text}~` }] }
       */
     }
-    if (child.text && child.code) {
-      const quotations = '```';
-
-      rText = `${quotations}Shell\n${rText}\n${quotations}`;
-
-      delete rChild.text;
-      rChild = { ...rChild, text: rText };
-    }
-    if (child.text && child.highlight) {
+    if (child.text && child.inlineCode) {
       const quotations = '`';
 
       rText = `${quotations}${rText}${quotations}`;
 
-      delete rChild.text;
+      delete rChild.inlineCode;
       rChild = { ...rChild, text: rText };
     }
+
     return rChild;
   });
 };
