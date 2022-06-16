@@ -1,3 +1,4 @@
+import link from './link.svg';
 import bold from './bold.svg';
 import italic from './italic.svg';
 import underline from './underline.svg';
@@ -15,6 +16,7 @@ import alignCenter from './alignCenter.svg';
 import alignJustify from './alignJustify.svg';
 
 export {
+  link,
   bold,
   italic,
   underline,

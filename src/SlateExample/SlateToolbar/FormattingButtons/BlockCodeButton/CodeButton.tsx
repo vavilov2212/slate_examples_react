@@ -9,11 +9,11 @@ import styles from './CodeButton.module.scss';
 
 interface CodeButtonProps {
   format: FormattingOption;
-  Icon: SVGElement;
+  icon: SVGElement;
 }
 
 const CodeButton = (props: CodeButtonProps) => {
-  const { format, Icon } = props;
+  const { format, icon: Icon } = props;
   const editor = useSlate();
 
   const isCodeActive = (editor: Editor, format: FormattingOption) => {
@@ -40,7 +40,7 @@ const CodeButton = (props: CodeButtonProps) => {
       Transforms.unwrapNodes(editor, {
         match: n => !Editor.isEditor(n) &&
           SlateElement.isElement(n) &&
-          n.children.some(cn => cn.type === 'code'),
+          SlateElement.isElementType(n, 'code'),
         split: true,
         mode: 'all',
       })

@@ -1,8 +1,9 @@
 import React from 'react';
 import cn from 'classnames';
-import LinkIcon from './link.svg';
 import { Editor, Transforms, Range, Descendant, Element as SlateElement} from 'slate';
 import { useSlate } from 'slate-react';
+
+import { FormattingOption } from 'SlateExample';
 
 import styles from './LinkButton.module.scss';
 
@@ -11,7 +12,14 @@ interface LinkElement {
   url: string;
   children: Descendant[];
 }
-const LinkButton = (props: any) => {
+
+interface LinkButtonProps {
+  format: FormattingOption;
+  icon: any;
+}
+
+const LinkButton = (props: LinkButtonProps) => {
+  const { icon: Icon } = props;
   const editor = useSlate();
 
   const isLinkActive = (editor: Editor) => {
@@ -58,7 +66,7 @@ const LinkButton = (props: any) => {
 
   return (
     <div className={styles.linkButtonWrapper}>
-      <LinkIcon
+      <Icon
         onMouseDown={(event) => {
           event.preventDefault();
           if (isLinkActive(editor)) {

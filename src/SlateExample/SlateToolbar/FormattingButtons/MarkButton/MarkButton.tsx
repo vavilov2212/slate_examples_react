@@ -9,11 +9,11 @@ import styles from './MarkButton.module.scss';
 
 interface MarkButtonProps {
   format: FormattingOption;
-  Icon: SVGElement;
+  icon: SVGElement;
 }
 
 const MarkButton = (props: MarkButtonProps) => {
-  const { format, Icon } = props;
+  const { format, icon: Icon } = props;
   const editor = useSlate();
 
   const isMarkActive = (editor: Editor, format: FormattingOption) => {

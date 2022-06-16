@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
-import { Node, Editor, Element as SlateElement, Descendant, createEditor } from 'slate';
+import { Node, Descendant, createEditor } from 'slate';
+import { withInlines, withInsertBreaks } from './plugins';
 import { withReact } from 'slate-react';
 import { withHistory } from 'slate-history';
 import { unified } from "unified";
@@ -43,9 +44,23 @@ export default function IndexPage() {
         { text: 'This is regular text' },
       ],
     },
+    {
+      type: "paragraph",
+      children: [
+        {
+          type: "code",
+          children: [
+            {
+              text: "function thisIsCodeBlock() {\n  return someValue;\n}"
+            }
+          ],
+          lang: "javascript"
+        },
+      ]
+    }
   ])
 
-  const editor = useMemo(() => withInlines(withReact(withHistory(createEditor()))), [])
+  const editor = useMemo(() => withInsertBreaks(withInlines(withReact(withHistory(createEditor())))), []);
 
   return (
     <div className={styles.pageContainer}>
@@ -135,16 +150,6 @@ const serialize = (value: Descendant[]) => {
   const mdText = processor.stringify(ast);
 
   return mdText.replace(/\\(?=<|~|`)/g, '');
-};
-
-const withInlines = (editor: Editor) => {
-  const { isInline } = editor
-
-  editor.isInline = (element: SlateElement) => {
-    return ['link'].includes(element.type) || isInline(element)
-  }
-
-  return editor;
 };
 
 const serializeMarks = (children: any) => {
