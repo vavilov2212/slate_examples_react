@@ -1,4 +1,5 @@
 import React from 'react';
+import { paragraphBlock } from 'constants/slate/blocks';
 import cn from 'classnames';
 import { Editor, Element as SlateElement, Transforms } from 'slate';
 import { useSlate } from 'slate-react';
@@ -48,8 +49,7 @@ const CodeButton = (props: CodeButtonProps) => {
       Transforms.setNodes<SlateElement>(editor, { type: isActive ? 'paragraph' : format, lang: 'javascript' })
 
       if (!isActive) {
-        const codeBlock = { type: 'paragraph', children: [] };
-        Transforms.wrapNodes(editor, codeBlock);
+        Transforms.wrapNodes(editor, paragraphBlock);
       }
     }
   };

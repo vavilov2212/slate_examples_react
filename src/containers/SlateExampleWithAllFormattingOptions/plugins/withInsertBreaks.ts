@@ -1,11 +1,12 @@
 import { Path, Transforms, Range, Editor, Element as SlateElement, Node } from 'slate';
+import { paragraphBlock } from 'constants/slate/blocks';
 
 export default function withInsertBreaks(editor: Editor){
 
   editor.insertBreak = () => {
     Transforms.insertNodes(
       editor,
-      { type: 'paragraph', children: [ { text: ''} ] },
+      paragraphBlock,
       {
         match: n =>
           !Editor.isEditor(n) &&
