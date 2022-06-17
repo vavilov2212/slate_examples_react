@@ -44,7 +44,7 @@ const CodeButton = (props: CodeButtonProps) => {
           SlateElement.isElementType(n, 'code'),
         split: true,
         mode: 'all',
-      })
+      });
 
       Transforms.setNodes<SlateElement>(editor, { type: isActive ? 'paragraph' : format, lang: 'javascript' })
 
