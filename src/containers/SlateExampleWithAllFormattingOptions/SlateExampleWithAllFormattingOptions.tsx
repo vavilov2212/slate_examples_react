@@ -3,9 +3,9 @@ import { Node, Descendant, createEditor } from 'slate';
 import { withInlines, withInsertBreaks } from './plugins';
 import { withReact } from 'slate-react';
 import { withHistory } from 'slate-history';
-import { unified } from "unified";
-import stringify from "remark-stringify";
-import { slateToRemark } from "remark-slate-transformer";
+import { unified } from 'unified';
+import stringify from 'remark-stringify';
+import { slateToRemark } from 'remark-slate-transformer';
 import { SlateProviderWrapper, SlateEditable, SlateToolbar } from 'SlateExample';
 
 import styles from './SlateExampleWithAllFormattingOptions.module.scss';
@@ -26,10 +26,10 @@ export default function IndexPage() {
       ],
     },
     {
-      type: "paragraph",
+      type: 'paragraph',
       children: [
         {
-          text: "All of the marks",
+          text: 'All of the marks',
           strong: true,
           emphasis: true,
           underline: true,
@@ -45,16 +45,22 @@ export default function IndexPage() {
       ],
     },
     {
-      type: "paragraph",
+      type: 'paragraph',
+      children: [
+        { text: 'function someFunct() { return someVar; };' },
+      ],
+    },
+    {
+      type: 'paragraph',
       children: [
         {
-          type: "code",
+          type: 'code',
           children: [
             {
-              text: "function thisIsCodeBlock() {\n  return someValue;\n}"
+              text: 'function thisIsCodeBlock() {\n  return someValue;\n}'
             }
           ],
-          lang: "javascript"
+          lang: 'javascript'
         },
       ]
     }
@@ -136,7 +142,7 @@ const serialize = (value: Descendant[]) => {
       // https://github.com/inokawa/remark-slate-transformer/issues/31#issuecomment-1146665213
       paragraph: (node: Node, next) => {
         return ({
-          type: "paragraph",
+          type: 'paragraph',
           children: next(serializeMarks(node.children)),
         });
       },
@@ -144,7 +150,7 @@ const serialize = (value: Descendant[]) => {
   }).use(stringify);
 
   const ast = processor.runSync({
-    type: "root",
+    type: 'root',
     children: value,
   });
   const mdText = processor.stringify(ast);

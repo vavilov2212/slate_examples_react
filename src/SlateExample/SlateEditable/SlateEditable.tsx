@@ -1,25 +1,99 @@
-import React from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import cn from 'classnames';
+import { Text, Node, Editor, Path } from 'slate';
+import 'prismjs/themes/prism.css';
 import { Editable, useSelected } from 'slate-react';
 
 import styles from './SlateEditable.module.scss';
 
+  let isCode = false;
+
 export default function IndexPage() {
+  const [language, setLanguage] = useState('plain')
+  const [Prism, setPrism] = useState("")
+
+  useEffect(() => {
+    (async () => (await import('prismjs')).default)()
+      .then(Prism => {
+        Prism.manual = true;
+        setPrism(Prism);
+      })
+  }, [])
+
+  const decorate = useCallback(
+    ([node, path]) => {
+      const ranges = []
+
+      if (node.type) {
+        isCode = node.type === 'code' ? true : false;
+      }
+
+      if (!Text.isText(node) || Editor.isEditor(node)) {
+        return ranges;
+      }
+
+      if (!isCode) return ranges;
+
+
+      if (Prism) {
+        const tokens = Prism?.tokenize(node.text, Prism?.languages?.[language]);
+        let start = 0
+
+        for (const token of tokens) {
+          const length = getLength(token)
+          const end = start + length
+
+          if (typeof token !== 'string') {
+            ranges.push({
+              className: `prism-token token ${token.type}`,
+              anchor: { path, offset: start },
+              focus: { path, offset: end },
+            })
+          }
+
+          start = end
+        }
+      }
+
+      return ranges;
+    },
+    [language, Prism]
+  );
+
+  const getLength = token => {
+    if (typeof token === 'string') {
+      return token.length
+    } else if (typeof token.content === 'string') {
+      return token.content.length
+    } else {
+      return token.content.reduce((l, t) => l + getLength(t), 0)
+    }
+  }
+
+  if (typeof window === undefined) return null;
 
   return (
     <div className={styles.slateEditable}>
+      <select onChange={(e) => setLanguage(e.target.value)} value={language}>
+        {
+          Prism?.languages && Object.keys(Prism.languages).map(lang => {
+            return <option value={lang}>{lang}</option>
+          })
+        }
+      </select>
       <Editable
-        renderElement={props => <Element {...props} />}
+        renderElement={props => <Element {...props} language={language} />}
         renderLeaf={props => <Leaf {...props} />}
         placeholder="Enter some plain text..."
         className={styles.slateInput}
+        decorate={decorate}
       />
     </div>
   )
 }
 
 const Element = (props: any) => {
-  const { attributes, children, element } = props
+  const { attributes, children, element, language } = props
   const style = { textAlign: element.align };
 
   switch (element.type) {
@@ -38,9 +112,11 @@ const Element = (props: any) => {
     }
     case 'code': {
       return (
-        <code style={style} {...attributes}>
-          {children}
-        </code>
+        <pre className={`language-${language}`}>
+          <code className={`language-${language}`} style={style} {...attributes}>
+            {children}
+          </code>
+        </pre>
       )
     }
     case 'bulleted-list':
@@ -80,7 +156,7 @@ const Element = (props: any) => {
         </h3>
       )
     default: {
-      return <p style={style} {...attributes}>{children}</p>
+      return <div style={style} {...attributes}>{children}</div>
     }
   }
 };
@@ -102,5 +178,5 @@ const Leaf = ({ attributes, children, leaf }) => {
     children = <mark>{children}</mark>
   }
 
-  return <span {...attributes}>{children}</span>;
+  return <span className={leaf.className} {...attributes}>{children}</span>;
 };

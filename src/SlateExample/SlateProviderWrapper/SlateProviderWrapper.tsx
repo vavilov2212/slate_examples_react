@@ -14,5 +14,3 @@ export default function SlateProviderWrapper(props: any) {
     </div>
   )
 }
-
-

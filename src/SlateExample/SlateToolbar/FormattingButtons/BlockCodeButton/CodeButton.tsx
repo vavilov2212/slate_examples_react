@@ -21,15 +21,13 @@ const CodeButton = (props: CodeButtonProps) => {
     const { selection } = editor
     if (!selection) return false
 
-    const [match] = Array.from(
-      Editor.nodes(editor, {
-        at: Editor.unhangRange(editor, selection),
-        match: n =>
-          !Editor.isEditor(n) &&
-          SlateElement.isElement(n) &&
-          n['type'] === format,
-      })
-    )
+    const [match] = Editor.nodes(editor, {
+      at: Editor.unhangRange(editor, selection),
+      match: n =>
+        !Editor.isEditor(n) &&
+        SlateElement.isElement(n) &&
+        n['type'] === format,
+    });
 
     return !!match
   }
@@ -43,10 +41,10 @@ const CodeButton = (props: CodeButtonProps) => {
           SlateElement.isElement(n) &&
           SlateElement.isElementType(n, 'code'),
         split: true,
-        mode: 'all',
       });
 
-      Transforms.setNodes<SlateElement>(editor, { type: isActive ? 'paragraph' : format, lang: 'javascript' })
+      const attributes = isActive ? { type: 'paragraph' } : { type: format, lang: 'javascript' };
+      Transforms.setNodes<SlateElement>(editor, attributes);
 
       if (!isActive) {
         Transforms.wrapNodes(editor, paragraphBlock);
