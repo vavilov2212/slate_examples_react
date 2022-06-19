@@ -72,7 +72,7 @@ export default function IndexPage() {
     <div className={styles.pageContainer}>
       <h1>Slate editor with most common formatting options</h1>
       <div className={styles.rowsContainer}>
-        <SlateProviderWrapper editor={editor} value={value} onChange={setValue}>
+        <SlateProviderWrapper editor={editor} value={value} onChange={setValue} containerClassName={styles.editorContainer}>
           <SlateToolbar formattingOptions={['link', 'strong', 'emphasis', 'underline', 'strikethrough', 'code', 'inlineCode', 'heading1', 'heading2', 'heading3', 'numbered-list', 'bulleted-list'/*, 'left', 'center', 'right', 'justify'*/ ]} />
           <SlateEditable />
         </SlateProviderWrapper>
