@@ -1,37 +1,15 @@
 import { Transforms, Editor, Element as SlateElement } from 'slate';
-import { paragraphBlock } from 'constants/slate/blocks';
+import { isCode } from '../utils';
 
 export default function withInsertBreaks(editor: Editor){
-  const { insertBreak, insertSoftBreak } = editor;
+  const { insertBreak } = editor;
 
   editor.insertBreak = () => {
-    const [match] = Editor.nodes(editor, {
-      match: n =>
-        !Editor.isEditor(n) &&
-        SlateElement.isElement(n) &&
-        SlateElement.isElementType(n, 'code')
-    });
-
-    if (match) {
-      return Transforms.insertNodes(editor, paragraphBlock, { mode: 'highest' });
-    }
-
-    insertBreak();
-  };
-
-  editor.insertSoftBreak = () => {
-    const [match] = Editor.nodes(editor, {
-      match: n =>
-        !Editor.isEditor(n) &&
-        SlateElement.isElement(n) &&
-        SlateElement.isElementType(n, 'code')
-    });
-
-    if (match) {
+    if (isCode(editor)) {
       return Transforms.insertText(editor, '\n');
     }
 
-    insertSoftBreak();
+    insertBreak();
   };
 
   return editor;

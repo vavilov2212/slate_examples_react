@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Node, Descendant, createEditor } from 'slate';
 import { withInlines, withInsertBreaks } from './plugins';
+import onKeyDown  from './eventHandlers/onKeyDown';
 import { withReact } from 'slate-react';
 import { withHistory } from 'slate-history';
 import { unified } from 'unified';
@@ -74,7 +75,7 @@ export default function IndexPage() {
       <div className={styles.rowsContainer}>
         <SlateProviderWrapper editor={editor} value={value} onChange={setValue} containerClassName={styles.editorContainer}>
           <SlateToolbar formattingOptions={['link', 'strong', 'emphasis', 'underline', 'strikethrough', 'code', 'inlineCode', 'heading1', 'heading2', 'heading3', 'numbered-list', 'bulleted-list'/*, 'left', 'center', 'right', 'justify'*/ ]} />
-          <SlateEditable />
+          <SlateEditable onKeyDown={(e) => onKeyDown(e, editor)} />
         </SlateProviderWrapper>
         <div className={styles.serializedCotainer}>
           <div className={styles.serializedCotainerValueColumn}>

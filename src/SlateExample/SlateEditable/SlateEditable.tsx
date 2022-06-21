@@ -8,7 +8,12 @@ import styles from './SlateEditable.module.scss';
 
   let isCode = false;
 
-export default function IndexPage() {
+interface SlateEditableProps {
+  onKeyDown?: React.KeyboardEventHandler<HTMLDivElement>;
+}
+export default function SlateEditable(props: SlateEditableProps) {
+  const { onKeyDown } = props;
+
   const [language, setLanguage] = useState('plain')
   const [Prism, setPrism] = useState("")
 
@@ -87,6 +92,7 @@ export default function IndexPage() {
         placeholder="Enter some plain text..."
         className={styles.slateInput}
         decorate={decorate}
+        onKeyDown={onKeyDown}
       />
     </div>
   )
